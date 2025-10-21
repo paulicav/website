@@ -71,7 +71,7 @@ function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-md py-3'
+          ? 'bg-background/95 dark:bg-background/90 backdrop-blur-md shadow-md py-3'
           : 'bg-transparent py-4'
       }`}
       data-testid="header-navigation"
@@ -81,7 +81,7 @@ function Header() {
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className={`text-xl md:text-2xl font-bold transition-colors ${
-              isScrolled ? 'text-foreground' : 'text-white'
+              isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
             }`}
             data-testid="button-logo"
           >
@@ -92,7 +92,7 @@ function Header() {
             <button
               onClick={() => scrollToSection('services')}
               className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
-                isScrolled ? 'text-foreground' : 'text-white'
+                isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
               }`}
               data-testid="link-nav-services"
             >
@@ -101,7 +101,7 @@ function Header() {
             <button
               onClick={() => scrollToSection('how-it-works')}
               className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
-                isScrolled ? 'text-foreground' : 'text-white'
+                isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
               }`}
               data-testid="link-nav-how-it-works"
             >
@@ -110,7 +110,7 @@ function Header() {
             <button
               onClick={() => scrollToSection('residential')}
               className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
-                isScrolled ? 'text-foreground' : 'text-white'
+                isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
               }`}
               data-testid="link-nav-residential"
             >
@@ -119,7 +119,7 @@ function Header() {
             <button
               onClick={() => scrollToSection('commercial')}
               className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
-                isScrolled ? 'text-foreground' : 'text-white'
+                isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
               }`}
               data-testid="link-nav-commercial"
             >
@@ -128,7 +128,7 @@ function Header() {
             <button
               onClick={() => scrollToSection('contact')}
               className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
-                isScrolled ? 'text-foreground' : 'text-white'
+                isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
               }`}
               data-testid="link-nav-contact"
             >
@@ -150,7 +150,7 @@ function Header() {
               size="sm"
               onClick={() => scrollToSection('contact')}
               variant={isScrolled ? 'default' : 'outline'}
-              className={!isScrolled ? 'border-white/20 text-white backdrop-blur-sm bg-white/10' : ''}
+              className={!isScrolled ? 'border-white/20 text-white dark:text-white backdrop-blur-sm bg-white/10 dark:bg-white/10' : ''}
               data-testid="button-nav-mobile-cta"
             >
               Contact
