@@ -47,11 +47,13 @@ The design follows a clean, professional aesthetic with modern color scheme:
 
 ### 1. Sticky Header Navigation
 - Fixed position with smooth scroll behavior
-- Navigation links: Servicii, Cum Funcționează, Contact (visible on all screen sizes)
+- **Desktop Navigation**: Horizontal menu with Servicii, Cum Funcționează, Contact, and "Solicită Ofertă" button
+- **Mobile Navigation**: Burger menu with full-screen overlay
+  - Hamburger icon toggles to X when open
+  - Automatically closes when navigation item clicked
+  - Automatically closes when viewport resizes to desktop
 - Transparent background initially, transitions to solid with blur on scroll
-- "Solicită Ofertă" CTA button (hidden on mobile, visible md+)
 - Full dark mode support
-- Uses flex-wrap for proper responsive layout
 
 ### 2. Hero Section
 - Full viewport height with parallax background image
@@ -99,7 +101,7 @@ The design follows a clean, professional aesthetic with modern color scheme:
 - Contact details: Cristian Ioana, 0742 575 464, Str. Tiberiu Ricci Nr.13, Cisnadie
 - Clean border divider separating information from CTA
 - Horizontal flex-wrap benefits list (Evaluare gratuită, Ofertă transparentă, Răspuns rapid, Flexibilitate totală)
-- Centered CTA button "Sună Acum - 0742 575 464"
+- Centered CTA button "Sună Acum" (phone number not displayed on button)
 
 ### 9. Footer
 - 4-column layout: Despre Noi, Servicii, Legal, Contact
@@ -186,18 +188,26 @@ Three generated images used throughout:
 - Smooth scroll behavior for navigation
 
 ## Recent Changes
+- **2025-01-21**: Mobile burger menu and button text updates
+  - Implemented mobile burger menu navigation with hamburger/X icon toggle
+  - Desktop navigation shows horizontal menu (Servicii, Cum Funcționează, Contact, Solicită Ofertă)
+  - Mobile navigation uses burger menu with full-screen overlay
+  - Mobile menu automatically closes when navigation item clicked
+  - Mobile menu automatically closes when viewport resizes to desktop (≥768px)
+  - Updated "Sună Acum" button text to remove phone number display
+  - All data-testid attributes maintained for testing
+  - Verified responsive behavior with automatic menu closure on resize
+  
 - **2025-01-21**: Navigation and Contact section improvements
   - Simplified navigation menu to show only Servicii, Cum Funcționează, Contact (removed Rezidențial and Comercial)
   - Fixed 'Servicii' navigation link by adding id="services" to ServicesOverview section
-  - Updated mobile navigation to display all menu items instead of just Contact button
-  - Added flex-wrap to navigation container for proper responsive behavior
   - Redesigned Contact section with modern, flat layout:
     - Replaced card-based layout with clean 3-column grid
     - Round icon backgrounds for contact information
     - Subtle bg-muted/30 background instead of cards
     - Border divider separating info from CTA
     - Horizontal flex-wrap benefits list
-    - Centered CTA button with phone number visible
+    - Centered CTA button
   - All interactive elements retain data-testid attributes
   - Verified responsive behavior across all breakpoints
   
