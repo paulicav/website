@@ -47,10 +47,11 @@ The design follows a clean, professional aesthetic with modern color scheme:
 
 ### 1. Sticky Header Navigation
 - Fixed position with smooth scroll behavior
-- Navigation links: Servicii, Cum Funcționează, Rezidențial, Comercial, Contact
+- Navigation links: Servicii, Cum Funcționează, Contact (visible on all screen sizes)
 - Transparent background initially, transitions to solid with blur on scroll
-- "Solicită Ofertă" CTA button
+- "Solicită Ofertă" CTA button (hidden on mobile, visible md+)
 - Full dark mode support
+- Uses flex-wrap for proper responsive layout
 
 ### 2. Hero Section
 - Full viewport height with parallax background image
@@ -92,10 +93,13 @@ The design follows a clean, professional aesthetic with modern color scheme:
   - Echipamente Profesionale (Wrench icon)
 
 ### 8. Contact Section
-- Contact information card with name, phone, address
-- Program information
-- Call-to-action card with benefits list
-- Prominent "Sună Acum" button
+- Modern, flat layout with subtle bg-muted/30 background
+- Centered 3-column grid for contact information (stacks on mobile)
+- Round icon backgrounds for visual interest
+- Contact details: Cristian Ioana, 0742 575 464, Str. Tiberiu Ricci Nr.13, Cisnadie
+- Clean border divider separating information from CTA
+- Horizontal flex-wrap benefits list (Evaluare gratuită, Ofertă transparentă, Răspuns rapid, Flexibilitate totală)
+- Centered CTA button "Sună Acum - 0742 575 464"
 
 ### 9. Footer
 - 4-column layout: Despre Noi, Servicii, Legal, Contact
@@ -182,6 +186,21 @@ Three generated images used throughout:
 - Smooth scroll behavior for navigation
 
 ## Recent Changes
+- **2025-01-21**: Navigation and Contact section improvements
+  - Simplified navigation menu to show only Servicii, Cum Funcționează, Contact (removed Rezidențial and Comercial)
+  - Fixed 'Servicii' navigation link by adding id="services" to ServicesOverview section
+  - Updated mobile navigation to display all menu items instead of just Contact button
+  - Added flex-wrap to navigation container for proper responsive behavior
+  - Redesigned Contact section with modern, flat layout:
+    - Replaced card-based layout with clean 3-column grid
+    - Round icon backgrounds for contact information
+    - Subtle bg-muted/30 background instead of cards
+    - Border divider separating info from CTA
+    - Horizontal flex-wrap benefits list
+    - Centered CTA button with phone number visible
+  - All interactive elements retain data-testid attributes
+  - Verified responsive behavior across all breakpoints
+  
 - **2025-01-21**: Latest updates with improved UX and legal compliance
   - Updated color scheme to navy/turquoise/orange for better contrast and modern appeal
   - Implemented sticky header navigation with smooth scroll to sections
