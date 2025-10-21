@@ -13,12 +13,12 @@
 
 ### Light Mode
 - **Primary Background**: 0 0% 100% (Pure white - symbolizing cleanliness)
-- **Primary Brand**: 200 95% 45% (Deep professional blue - trust and reliability)
-- **Secondary Background**: 200 25% 97% (Light blue wash for sections)
-- **Text Primary**: 220 15% 15% (Near black, excellent readability)
-- **Text Secondary**: 220 10% 45% (Muted slate for supporting text)
-- **Accent**: 160 75% 42% (Fresh green - eco-friendly, clean)
-- **Border/Divider**: 200 15% 90% (Subtle separation)
+- **Primary Brand**: 195 100% 39% (Vibrant turquoise/cyan - fresh and clean)
+- **Secondary Background**: 195 60% 97% (Light turquoise wash for sections)
+- **Text Primary**: 210 24% 16% (Deep navy, excellent readability and contrast)
+- **Text Secondary**: 210 16% 46% (Muted blue-gray for supporting text)
+- **Accent**: 24 95% 53% (Warm orange - energy and friendliness)
+- **Border/Divider**: 210 20% 90% (Subtle separation)
 
 ### Dark Mode (for form inputs and footer)
 - **Background**: 220 20% 12% (Deep navy-slate)
