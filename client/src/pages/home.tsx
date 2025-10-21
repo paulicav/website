@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { Phone, Mail, MapPin, Sparkles, Home as HomeIcon, Building2, CheckCircle2, Award, Users, Wrench } from 'lucide-react';
+import { Phone, Mail, MapPin, Sparkles, Home as HomeIcon, Building2, CheckCircle2, Award, Users, Wrench, Calendar, ClipboardCheck, Sparkle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Link } from 'wouter';
 import heroImage from '@assets/generated_images/Clean_modern_kitchen_hero_bddb4901.png';
 import residentialImage from '@assets/generated_images/Clean_residential_living_room_f8e191ac.png';
 import commercialImage from '@assets/generated_images/Clean_modern_office_space_383f3d78.png';
@@ -37,6 +38,128 @@ function useScrollAnimation() {
   }, []);
 
   return { elementRef, isVisible };
+}
+
+// Sticky Header Navigation
+function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80; // Account for sticky header height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-white/95 backdrop-blur-md shadow-md py-3'
+          : 'bg-transparent py-4'
+      }`}
+      data-testid="header-navigation"
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
+        <nav className="flex items-center justify-between">
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className={`text-xl md:text-2xl font-bold transition-colors ${
+              isScrolled ? 'text-foreground' : 'text-white'
+            }`}
+            data-testid="button-logo"
+          >
+            Clean4Good
+          </button>
+
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
+            <button
+              onClick={() => scrollToSection('services')}
+              className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
+                isScrolled ? 'text-foreground' : 'text-white'
+              }`}
+              data-testid="link-nav-services"
+            >
+              Servicii
+            </button>
+            <button
+              onClick={() => scrollToSection('how-it-works')}
+              className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
+                isScrolled ? 'text-foreground' : 'text-white'
+              }`}
+              data-testid="link-nav-how-it-works"
+            >
+              Cum Funcționează
+            </button>
+            <button
+              onClick={() => scrollToSection('residential')}
+              className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
+                isScrolled ? 'text-foreground' : 'text-white'
+              }`}
+              data-testid="link-nav-residential"
+            >
+              Rezidențial
+            </button>
+            <button
+              onClick={() => scrollToSection('commercial')}
+              className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
+                isScrolled ? 'text-foreground' : 'text-white'
+              }`}
+              data-testid="link-nav-commercial"
+            >
+              Comercial
+            </button>
+            <button
+              onClick={() => scrollToSection('contact')}
+              className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
+                isScrolled ? 'text-foreground' : 'text-white'
+              }`}
+              data-testid="link-nav-contact"
+            >
+              Contact
+            </button>
+            <Button
+              size="sm"
+              onClick={() => scrollToSection('contact')}
+              className="text-sm"
+              data-testid="button-nav-cta"
+            >
+              Solicită Ofertă
+            </Button>
+          </div>
+
+          {/* Mobile CTA Button */}
+          <div className="md:hidden">
+            <Button
+              size="sm"
+              onClick={() => scrollToSection('contact')}
+              variant={isScrolled ? 'default' : 'outline'}
+              className={!isScrolled ? 'border-white/20 text-white backdrop-blur-sm bg-white/10' : ''}
+              data-testid="button-nav-mobile-cta"
+            >
+              Contact
+            </Button>
+          </div>
+        </nav>
+      </div>
+    </header>
+  );
 }
 
 // Hero Section with Parallax
@@ -205,6 +328,79 @@ function ServicesOverview() {
   );
 }
 
+// How It Works Section
+function HowItWorks() {
+  const { elementRef: ref1, isVisible: visible1 } = useScrollAnimation();
+  const { elementRef: ref2, isVisible: visible2 } = useScrollAnimation();
+  const { elementRef: ref3, isVisible: visible3 } = useScrollAnimation();
+
+  const steps = [
+    {
+      icon: Phone,
+      title: '1. Contactează-ne',
+      description: 'Sună sau completează formularul de contact pentru a solicita o ofertă gratuită. Discutăm despre nevoile tale specifice.',
+      ref: ref1,
+      visible: visible1,
+      delay: ''
+    },
+    {
+      icon: Calendar,
+      title: '2. Programare Convenabilă',
+      description: 'Stabilim împreună data și ora care ți se potrivesc cel mai bine. Flexibilitate totală pentru confortul tău.',
+      ref: ref2,
+      visible: visible2,
+      delay: 'delay-100'
+    },
+    {
+      icon: Sparkle,
+      title: '3. Curățenie Profesională',
+      description: 'Echipa noastră vine echipată cu tot necesarul și lasă spațiul tău impecabil de curat. Garantat!',
+      ref: ref3,
+      visible: visible3,
+      delay: 'delay-200'
+    }
+  ];
+
+  return (
+    <section id="how-it-works" className="py-16 md:py-24 lg:py-32 bg-secondary">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-4">
+            Cum Funcționează
+          </h2>
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Trei pași simpli către un spațiu perfect curat
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {steps.map((step, index) => (
+            <div
+              key={index}
+              ref={step.ref}
+              className={`transition-all duration-700 ease-out ${step.delay} ${
+                step.visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              <Card className="p-8 md:p-10 text-center h-full">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                  <step.icon className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-medium text-foreground mb-4">
+                  {step.title}
+                </h3>
+                <p className="text-base text-muted-foreground leading-relaxed">
+                  {step.description}
+                </p>
+              </Card>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Residential Cleaning Section
 function ResidentialSection() {
   const { elementRef, isVisible } = useScrollAnimation();
@@ -271,11 +467,11 @@ function ResidentialSection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
-        <div className="mb-12 md:mb-16">
+        <div className="mb-12 md:mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-4" data-testid="text-residential-title">
             Curățenie Rezidențială
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-3xl leading-relaxed">
+          <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Servicii complete de curățenie pentru locuința ta. Dispunem de aparatură profesională și soluții certificate pentru a reda strălucirea casei tale.
           </p>
         </div>
@@ -412,11 +608,11 @@ function CommercialSection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
-        <div className="mb-12 md:mb-16 text-right">
+        <div className="mb-12 md:mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-4" data-testid="text-commercial-title">
             Curățenie Birouri și Spații Comerciale
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-3xl ml-auto leading-relaxed">
+          <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Echipa noastră oferă profesionalism cu servicii eficiente și de calitate pentru birouri. Ne adaptăm cerințelor fiecărui client și oferim flexibilitate totală.
           </p>
         </div>
@@ -706,7 +902,7 @@ function Footer() {
   return (
     <footer className="bg-[hsl(220,20%,12%)] text-[hsl(200,10%,95%)] py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8">
           {/* About */}
           <div>
             <h3 className="text-xl font-semibold mb-4">Clean4Good</h3>
@@ -743,11 +939,33 @@ function Footer() {
                   Curățenie Comercială
                 </button>
               </li>
+            </ul>
+          </div>
+
+          {/* Legal & Links */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4">Legal</h3>
+            <ul className="space-y-2 text-sm">
               <li>
-                <span className="opacity-90">Curățenie Generală</span>
+                <Link href="/politica-confidentialitate" className="opacity-90 hover:opacity-100 hover:underline" data-testid="link-footer-privacy">
+                  Politica de Confidențialitate
+                </Link>
               </li>
               <li>
-                <span className="opacity-90">Curățenie de Întreținere</span>
+                <Link href="/politica-cookie" className="opacity-90 hover:opacity-100 hover:underline" data-testid="link-footer-cookies">
+                  Politica de Cookie-uri
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="https://anpc.ro/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="opacity-90 hover:opacity-100 hover:underline"
+                  data-testid="link-footer-anpc"
+                >
+                  ANPC - Protecția Consumatorilor
+                </a>
               </li>
             </ul>
           </div>
@@ -792,8 +1010,10 @@ function Footer() {
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <Header />
       <HeroSection />
       <ServicesOverview />
+      <HowItWorks />
       <ResidentialSection />
       <CommercialSection />
       <WhyChooseUs />
