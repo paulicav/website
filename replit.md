@@ -1,7 +1,9 @@
 # Clean4Good - Cleaning Services Landing Page
 
 ## Overview
-Clean4Good is a modern, frontend-only React landing page for a professional cleaning services company based in Cisnadie, Romania. The site showcases both residential and commercial cleaning services with a focus on trust, professionalism, and cleanliness.
+Clean4Good is a modern, **frontend-only** React landing page for a professional cleaning services company based in Cisnadie, Romania. The site showcases both residential and commercial cleaning services with a focus on trust, professionalism, and cleanliness.
+
+**Important**: This is a pure static site with no backend. All backend code and dependencies have been removed.
 
 ## Project Details
 - **Company Name**: Clean4Good
@@ -188,6 +190,14 @@ Three generated images used throughout:
 - Smooth scroll behavior for navigation
 
 ## Recent Changes
+- **2025-01-21**: Converted to frontend-only static site
+  - Removed all backend code (server/ folder, Express, database)
+  - Uninstalled all backend dependencies (Express, Drizzle ORM, Passport, WebSockets)
+  - Updated package.json to frontend-only scripts (dev, build, preview)
+  - Configured Vite to run on port 5000 and bind to 0.0.0.0
+  - Project is now ready for static deployment (DigitalOcean, Netlify, Vercel, etc.)
+  - Build output: `vite build` creates static files in `dist/public/`
+  
 - **2025-01-21**: Mobile burger menu and button text updates
   - Implemented mobile burger menu navigation with hamburger/X icon toggle
   - Desktop navigation shows horizontal menu (Servicii, Cum Funcționează, Contact, Solicită Ofertă)
@@ -262,10 +272,24 @@ attached_assets/
 ```
 
 ## Running the Project
+
+### Development
 ```bash
 npm run dev
 ```
-Opens on port 5000 with Vite dev server.
+Runs Vite dev server on port 5000, accessible at `http://localhost:5000/`
+
+### Build for Production
+```bash
+npm run build
+```
+Creates static files in `dist/public/` ready for deployment
+
+### Preview Production Build
+```bash
+npm run preview
+```
+Preview the production build locally before deploying
 
 ## Notes
 - No backend required - purely frontend application
