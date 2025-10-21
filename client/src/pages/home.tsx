@@ -88,10 +88,11 @@ function Header() {
             Clean4Good
           </button>
 
-          <div className="hidden md:flex items-center gap-6 lg:gap-8">
+          {/* Desktop & Mobile Navigation */}
+          <div className="flex flex-wrap items-center gap-3 md:gap-6 lg:gap-8">
             <button
               onClick={() => scrollToSection('services')}
-              className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
+              className={`text-xs md:text-sm lg:text-base font-medium transition-colors hover-elevate px-2 md:px-3 py-2 rounded-md ${
                 isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
               }`}
               data-testid="link-nav-services"
@@ -100,7 +101,7 @@ function Header() {
             </button>
             <button
               onClick={() => scrollToSection('how-it-works')}
-              className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
+              className={`text-xs md:text-sm lg:text-base font-medium transition-colors hover-elevate px-2 md:px-3 py-2 rounded-md ${
                 isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
               }`}
               data-testid="link-nav-how-it-works"
@@ -108,26 +109,8 @@ function Header() {
               Cum Funcționează
             </button>
             <button
-              onClick={() => scrollToSection('residential')}
-              className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
-                isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
-              }`}
-              data-testid="link-nav-residential"
-            >
-              Rezidențial
-            </button>
-            <button
-              onClick={() => scrollToSection('commercial')}
-              className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
-                isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
-              }`}
-              data-testid="link-nav-commercial"
-            >
-              Comercial
-            </button>
-            <button
               onClick={() => scrollToSection('contact')}
-              className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
+              className={`text-xs md:text-sm lg:text-base font-medium transition-colors hover-elevate px-2 md:px-3 py-2 rounded-md ${
                 isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
               }`}
               data-testid="link-nav-contact"
@@ -137,23 +120,10 @@ function Header() {
             <Button
               size="sm"
               onClick={() => scrollToSection('contact')}
-              className="text-sm"
+              className="text-xs md:text-sm hidden md:inline-flex"
               data-testid="button-nav-cta"
             >
               Solicită Ofertă
-            </Button>
-          </div>
-
-          {/* Mobile CTA Button */}
-          <div className="md:hidden">
-            <Button
-              size="sm"
-              onClick={() => scrollToSection('contact')}
-              variant={isScrolled ? 'default' : 'outline'}
-              className={!isScrolled ? 'border-white/20 text-white dark:text-white backdrop-blur-sm bg-white/10 dark:bg-white/10' : ''}
-              data-testid="button-nav-mobile-cta"
-            >
-              Contact
             </Button>
           </div>
         </nav>
@@ -251,7 +221,7 @@ function ServicesOverview() {
   };
 
   return (
-    <section className="py-16 md:py-24 lg:py-32 bg-background">
+    <section id="services" className="py-16 md:py-24 lg:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-4">
@@ -764,7 +734,7 @@ function ContactSection() {
   const { elementRef, isVisible } = useScrollAnimation();
 
   return (
-    <section id="contact" className="py-16 md:py-24 lg:py-32 bg-background">
+    <section id="contact" className="py-16 md:py-24 lg:py-32 bg-muted/30">
       <div
         ref={elementRef}
         className={`max-w-7xl mx-auto px-6 md:px-8 transition-all duration-700 ease-out ${
@@ -780,116 +750,85 @@ function ContactSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <Card className="p-8 md:p-10 border bg-card">
-              <h3 className="text-2xl font-medium text-card-foreground mb-8">
-                Informații de Contact
-              </h3>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4" data-testid="contact-name">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Users className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Nume</p>
-                    <p className="text-lg font-medium text-card-foreground">
-                      Cristian Ioana
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4" data-testid="contact-phone">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Telefon</p>
-                    <a
-                      href="tel:+40742575464"
-                      className="text-lg font-medium text-primary hover:underline"
-                      data-testid="link-phone"
-                    >
-                      0742 575 464
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4" data-testid="contact-address">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Adresă</p>
-                    <p className="text-lg font-medium text-card-foreground">
-                      Str. Tiberiu Ricci Nr.13
-                      <br />
-                      Cisnadie
-                    </p>
-                  </div>
-                </div>
+        <div className="max-w-4xl mx-auto">
+          {/* Contact Information Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 mb-12">
+            <div className="text-center" data-testid="contact-name">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 mb-4">
+                <Users className="w-7 h-7 text-primary" />
               </div>
-            </Card>
-
-            <Card className="p-8 md:p-10 border bg-accent">
-              <h3 className="text-xl font-medium text-accent-foreground mb-4">
-                Program de Lucru
-              </h3>
-              <p className="text-base text-accent-foreground/90 leading-relaxed">
-                Suntem disponibili pentru programări în funcție de nevoile tale. Apelează-ne pentru a discuta despre cerințele specifice și pentru a stabili un program convenabil.
+              <p className="text-sm text-muted-foreground mb-2">Contact</p>
+              <p className="text-lg font-semibold text-foreground">
+                Cristian Ioana
               </p>
-            </Card>
+            </div>
+
+            <div className="text-center" data-testid="contact-phone">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 mb-4">
+                <Phone className="w-7 h-7 text-primary" />
+              </div>
+              <p className="text-sm text-muted-foreground mb-2">Telefon</p>
+              <a
+                href="tel:+40742575464"
+                className="text-lg font-semibold text-primary hover:underline"
+                data-testid="link-phone"
+              >
+                0742 575 464
+              </a>
+            </div>
+
+            <div className="text-center" data-testid="contact-address">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 mb-4">
+                <MapPin className="w-7 h-7 text-primary" />
+              </div>
+              <p className="text-sm text-muted-foreground mb-2">Adresă</p>
+              <p className="text-lg font-semibold text-foreground">
+                Str. Tiberiu Ricci Nr.13, Cisnadie
+              </p>
+            </div>
           </div>
 
-          {/* Contact CTA */}
-          <div className="flex flex-col justify-center">
-            <Card className="p-8 md:p-10 border bg-primary text-primary-foreground">
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-2xl font-semibold mb-4">
-                    Solicită o Ofertă Personalizată
-                  </h3>
-                  <p className="text-base leading-relaxed opacity-95">
-                    Fiecare spațiu este unic. Contactează-ne telefonic pentru a discuta despre nevoile tale specifice și pentru a primi o ofertă personalizată.
-                  </p>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                    <span className="text-base">Evaluare gratuită</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                    <span className="text-base">Ofertă transparentă</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                    <span className="text-base">Răspuns rapid</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                    <span className="text-base">Flexibilitate totală</span>
-                  </div>
-                </div>
-
-                <div className="pt-4">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    asChild
-                    className="w-full border-white/20 text-white backdrop-blur-sm bg-white/10"
-                    data-testid="button-call-now"
-                  >
-                    <a href="tel:+40742575464" className="flex items-center justify-center gap-2">
-                      <Phone className="w-5 h-5" />
-                      Sună Acum
-                    </a>
-                  </Button>
-                </div>
+          {/* CTA Section */}
+          <div className="text-center space-y-6 pt-8 border-t border-border">
+            <h3 className="text-2xl md:text-3xl font-semibold text-foreground">
+              Solicită o Ofertă Gratuită
+            </h3>
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Fiecare spațiu este unic. Contactează-ne telefonic pentru a discuta despre nevoile tale și pentru a primi o ofertă personalizată.
+            </p>
+            
+            <div className="flex flex-wrap justify-center gap-6 py-6">
+              <div className="flex items-center gap-2 text-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-sm md:text-base">Evaluare gratuită</span>
               </div>
-            </Card>
+              <div className="flex items-center gap-2 text-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-sm md:text-base">Ofertă transparentă</span>
+              </div>
+              <div className="flex items-center gap-2 text-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-sm md:text-base">Răspuns rapid</span>
+              </div>
+              <div className="flex items-center gap-2 text-foreground">
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-sm md:text-base">Flexibilitate totală</span>
+              </div>
+            </div>
+
+            <div className="pt-4">
+              <Button
+                size="lg"
+                asChild
+                className="text-base md:text-lg font-semibold min-w-64"
+                data-testid="button-call-now"
+              >
+                <a href="tel:+40742575464" className="flex items-center justify-center gap-2">
+                  <Phone className="w-5 h-5" />
+                  Sună Acum - 0742 575 464
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
