@@ -11,13 +11,17 @@ Clean4Good is a modern, frontend-only React landing page for a professional clea
 - **Language**: Romanian (all content)
 
 ## Features
+- **Sticky Header Navigation**: Fixed header with smooth navigation to sections, transitions with scroll
 - **Hero Section**: Full-screen hero with parallax scrolling effect
 - **Services Overview**: Preview cards for residential and commercial services
+- **How It Works Section**: 3-step booking process explanation with icons
 - **Residential Services**: Detailed cleaning service lists (general + maintenance)
 - **Commercial Services**: Office and commercial space cleaning services
 - **Why Choose Us**: Feature highlights (professionalism, flexibility, professional equipment)
 - **Contact Section**: Contact information and call-to-action
-- **Footer**: Navigation and company information
+- **Footer**: 4-column layout with Legal links (Privacy Policy, Cookie Policy, ANPC)
+- **Policy Pages**: Privacy Policy and Cookie Policy with Romanian content
+- **Full Dark Mode Support**: All pages support light/dark themes with proper contrast
 
 ## Technical Stack
 - **Framework**: React 18 with TypeScript
@@ -29,57 +33,88 @@ Clean4Good is a modern, frontend-only React landing page for a professional clea
 - **Font**: Inter (Google Fonts)
 
 ## Design Approach
-The design follows a clean, professional aesthetic inspired by modern service industry leaders:
-- **Pure white backgrounds** symbolizing cleanliness
-- **Professional blue** (#200 95% 45%) for trust and reliability
-- **Fresh green accent** (#160 75% 42%) for eco-friendly messaging
+The design follows a clean, professional aesthetic with modern color scheme:
+- **Navy primary** (215 25% 27%) for trust and professionalism
+- **Turquoise accent** (174 72% 56%) for fresh, clean appeal
+- **Orange secondary** (27 87% 67%) for energy and warmth
+- **Full light/dark mode support** with proper theme tokens
+- **Sticky navigation** that transitions on scroll
 - **Generous whitespace** for ultra-clean look
 - **Smooth parallax effects** on hero and section backgrounds
 - **Fade-in animations** triggered by scroll intersection observer
 
 ## Key Sections
 
-### 1. Hero Section
+### 1. Sticky Header Navigation
+- Fixed position with smooth scroll behavior
+- Navigation links: Servicii, Cum Funcționează, Rezidențial, Comercial, Contact
+- Transparent background initially, transitions to solid with blur on scroll
+- "Solicită Ofertă" CTA button
+- Full dark mode support
+
+### 2. Hero Section
 - Full viewport height with parallax background image
 - Clean4Good branding and tagline
 - Primary CTA: "Solicită Ofertă Gratuită"
 - Scroll indicator animation
 
-### 2. Services Overview
+### 3. Services Overview
 - Two-column grid showcasing residential and commercial services
 - Icons and brief descriptions
 - Links to detailed sections below
 
-### 3. Residential Cleaning (Curățenie Rezidențială)
+### 4. How It Works (Cum Funcționează)
+- 3-step process cards with icons:
+  - **Step 1**: Contactați-ne (Phone icon)
+  - **Step 2**: Programare (Calendar icon)
+  - **Step 3**: Curățenie Profesională (Sparkles icon)
+- Centered section heading
+- Responsive grid layout
+
+### 5. Residential Cleaning (Curățenie Rezidențială)
 - Two service types:
   - **Curățenie Generală**: 14 comprehensive services
   - **Curățenie de Întreținere**: 10 maintenance services
 - Background parallax with faded home interior image
-- Green checkmark icons for service lists
+- Turquoise checkmark icons for service lists
 
-### 4. Commercial Cleaning (Birouri și Spații Comerciale)
+### 6. Commercial Cleaning (Birouri și Spații Comerciale)
 - Two service types:
   - **Curățenie Generală**: 14 office cleaning services
   - **Curățenie de Întreținere**: 9 maintenance services
 - Background parallax with faded office image
-- Professional blue checkmark icons
+- Navy checkmark icons
 
-### 5. Why Choose Us
+### 7. Why Choose Us (De Ce Să Ne Alegeți)
 - Three feature cards:
   - Profesionalism (Award icon)
   - Flexibilitate (Users icon)
   - Echipamente Profesionale (Wrench icon)
 
-### 6. Contact Section
+### 8. Contact Section
 - Contact information card with name, phone, address
 - Program information
 - Call-to-action card with benefits list
 - Prominent "Sună Acum" button
 
-### 7. Footer
-- Three-column layout: About, Services, Contact
-- Dark background (navy-slate)
+### 9. Footer
+- 4-column layout: Despre Noi, Servicii, Legal, Contact
+- Legal column with:
+  - Politica de Confidențialitate (Privacy Policy)
+  - Politica de Cookie-uri (Cookie Policy)
+  - ANPC.ro (external link)
+- Dark background with proper contrast
 - Copyright notice
+
+### 10. Policy Pages
+- **Privacy Policy** (/politica-confidentialitate): GDPR-compliant privacy information
+- **Cookie Policy** (/politica-cookie): Cookie usage and management information
+- Both pages feature:
+  - Sticky header with back-to-home navigation
+  - Multiple information cards
+  - Contact section
+  - Clean, readable layout
+  - Full dark mode support
 
 ## Scroll Animations
 - **Intersection Observer API** triggers fade-in animations
@@ -107,16 +142,29 @@ Three generated images used throughout:
 
 ## Color Palette
 ### Light Mode
-- Primary Background: Pure white (0 0% 100%)
-- Primary Brand: Deep professional blue (200 95% 45%)
-- Secondary Background: Light blue wash (200 25% 97%)
-- Text Primary: Near black (220 15% 15%)
-- Text Secondary: Muted slate (220 10% 45%)
-- Accent: Fresh green (160 75% 42%)
+- Background: Pure white (0 0% 100%)
+- Foreground: Dark text (222.2 84% 4.9%)
+- Primary: Professional navy (215 25% 27%)
+- Primary Foreground: White text (210 40% 98%)
+- Secondary: Light gray (210 40% 96.1%)
+- Accent: Turquoise (174 72% 56%)
+- Accent Foreground: Navy (215 25% 27%)
+- Muted: Light slate (210 40% 96.1%)
+- Destructive: Warm orange (27 87% 67%)
 
-### Dark Elements (Footer, contact cards)
-- Background: Deep navy-slate (220 20% 12%)
-- Text: Off-white (200 10% 95%)
+### Dark Mode
+- Background: Deep navy-slate (222.2 84% 4.9%)
+- Foreground: Off-white (210 40% 98%)
+- Primary: Lighter navy (217.2 91.2% 59.8%)
+- Secondary: Dark slate (217.2 32.6% 17.5%)
+- Accent: Bright turquoise (174 72% 56%)
+- Muted: Darker slate (217.2 32.6% 17.5%)
+- Card: Slightly lighter background (222.2 84% 4.9%)
+
+### Theme Support
+- All components use semantic color tokens (background, foreground, primary, etc.)
+- Explicit dark: variants for proper contrast in dark mode
+- WCAG AA compliant contrast ratios
 
 ## Typography Scale
 - Hero: text-5xl → text-7xl, font-bold
@@ -134,12 +182,24 @@ Three generated images used throughout:
 - Smooth scroll behavior for navigation
 
 ## Recent Changes
+- **2025-01-21**: Latest updates with improved UX and legal compliance
+  - Updated color scheme to navy/turquoise/orange for better contrast and modern appeal
+  - Implemented sticky header navigation with smooth scroll to sections
+  - Added "Cum Funcționează" (How It Works) section with 3-step booking process
+  - Centered all section headings and improved responsive layout
+  - Updated footer to 4-column layout with Legal column
+  - Created Privacy Policy and Cookie Policy pages (/politica-confidentialitate, /politica-cookie)
+  - Added ANPC.ro external link in footer
+  - Implemented comprehensive dark mode support across all pages and components
+  - All interactive elements include data-testid attributes for testing
+  - Ensured WCAG AA contrast compliance in both light and dark modes
+  
 - **2025-01-21**: Initial project setup with complete landing page
   - Configured design system with Clean4Good color palette
   - Generated hero and section background images
   - Implemented parallax scrolling effects
   - Added scroll-triggered fade animations
-  - Built all 7 sections with Romanian content
+  - Built all sections with Romanian content
   - Ensured full responsive design
   - Added contact information and CTAs
 
@@ -156,15 +216,20 @@ Three generated images used throughout:
 client/
   src/
     pages/
-      home.tsx          # Main landing page with all sections
-      not-found.tsx     # 404 page
+      home.tsx               # Main landing page with all sections + sticky header
+      privacy-policy.tsx     # Privacy Policy page (GDPR compliant)
+      cookie-policy.tsx      # Cookie Policy page
+      not-found.tsx          # 404 page
     components/
-      ui/               # Shadcn UI components
+      ui/                    # Shadcn UI components (Card, Button, etc.)
     lib/
-      queryClient.ts    # React Query setup
-    App.tsx            # App router
-    index.css          # Global styles and design tokens
-    main.tsx           # Entry point
+      queryClient.ts         # React Query setup
+    App.tsx                  # App router with routes for all pages
+    index.css              # Global styles, design tokens, dark mode support
+    main.tsx               # Entry point
+design_guidelines.md        # Design system documentation
+attached_assets/
+  generated_images/          # Hero and section background images
 ```
 
 ## Running the Project
