@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Phone, Mail, MapPin, Sparkles, Home as HomeIcon, Building2, CheckCircle2, Award, Users, Wrench, Calendar, ClipboardCheck, Sparkle } from 'lucide-react';
+import { Phone, Mail, MapPin, Sparkles, Home as HomeIcon, Building2, CheckCircle2, Award, Users, Wrench, Calendar, ClipboardCheck, Sparkle, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Link } from 'wouter';
@@ -43,6 +43,7 @@ function useScrollAnimation() {
 // Sticky Header Navigation
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,10 +54,21 @@ function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMobileMenuOpen]);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80; // Account for sticky header height
+      const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -64,71 +76,127 @@ function Header() {
         top: offsetPosition,
         behavior: 'smooth'
       });
+      setIsMobileMenuOpen(false);
     }
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-background/95 dark:bg-background/90 backdrop-blur-md shadow-md py-3'
-          : 'bg-transparent py-4'
-      }`}
-      data-testid="header-navigation"
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
-        <nav className="flex items-center justify-between">
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className={`text-xl md:text-2xl font-bold transition-colors ${
-              isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
-            }`}
-            data-testid="button-logo"
-          >
-            Clean4Good
-          </button>
-
-          {/* Desktop & Mobile Navigation */}
-          <div className="flex flex-wrap items-center gap-3 md:gap-6 lg:gap-8">
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-background/95 dark:bg-background/90 backdrop-blur-md shadow-md py-3'
+            : 'bg-transparent py-4'
+        }`}
+        data-testid="header-navigation"
+      >
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
+          <nav className="flex items-center justify-between">
             <button
-              onClick={() => scrollToSection('services')}
-              className={`text-xs md:text-sm lg:text-base font-medium transition-colors hover-elevate px-2 md:px-3 py-2 rounded-md ${
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className={`text-xl md:text-2xl font-bold transition-colors ${
                 isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
               }`}
-              data-testid="link-nav-services"
+              data-testid="button-logo"
+            >
+              Clean4Good
+            </button>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-6 lg:gap-8">
+              <button
+                onClick={() => scrollToSection('services')}
+                className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
+                  isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
+                }`}
+                data-testid="link-nav-services"
+              >
+                Servicii
+              </button>
+              <button
+                onClick={() => scrollToSection('how-it-works')}
+                className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
+                  isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
+                }`}
+                data-testid="link-nav-how-it-works"
+              >
+                Cum Funcționează
+              </button>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className={`text-sm lg:text-base font-medium transition-colors hover-elevate px-3 py-2 rounded-md ${
+                  isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
+                }`}
+                data-testid="link-nav-contact"
+              >
+                Contact
+              </button>
+              <Button
+                size="sm"
+                onClick={() => scrollToSection('contact')}
+                className="text-sm"
+                data-testid="button-nav-cta"
+              >
+                Solicită Ofertă
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={`md:hidden p-2 rounded-md transition-colors ${
+                isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
+              }`}
+              data-testid="button-mobile-menu"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-background/95 dark:bg-background/95 backdrop-blur-md md:hidden"
+          style={{ top: '64px' }}
+          data-testid="mobile-menu-overlay"
+        >
+          <div className="flex flex-col items-center justify-center h-full space-y-8 px-6">
+            <button
+              onClick={() => scrollToSection('services')}
+              className="text-2xl font-medium text-foreground dark:text-foreground hover-elevate px-4 py-2 rounded-md"
+              data-testid="link-mobile-services"
             >
               Servicii
             </button>
             <button
               onClick={() => scrollToSection('how-it-works')}
-              className={`text-xs md:text-sm lg:text-base font-medium transition-colors hover-elevate px-2 md:px-3 py-2 rounded-md ${
-                isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
-              }`}
-              data-testid="link-nav-how-it-works"
+              className="text-2xl font-medium text-foreground dark:text-foreground hover-elevate px-4 py-2 rounded-md"
+              data-testid="link-mobile-how-it-works"
             >
               Cum Funcționează
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className={`text-xs md:text-sm lg:text-base font-medium transition-colors hover-elevate px-2 md:px-3 py-2 rounded-md ${
-                isScrolled ? 'text-foreground dark:text-foreground' : 'text-white dark:text-white'
-              }`}
-              data-testid="link-nav-contact"
+              className="text-2xl font-medium text-foreground dark:text-foreground hover-elevate px-4 py-2 rounded-md"
+              data-testid="link-mobile-contact"
             >
               Contact
             </button>
             <Button
-              size="sm"
+              size="lg"
               onClick={() => scrollToSection('contact')}
-              className="text-xs md:text-sm hidden md:inline-flex"
-              data-testid="button-nav-cta"
+              className="text-lg"
+              data-testid="button-mobile-cta"
             >
               Solicită Ofertă
             </Button>
           </div>
-        </nav>
-      </div>
-    </header>
+        </div>
+      )}
+    </>
   );
 }
 
@@ -820,12 +888,12 @@ function ContactSection() {
               <Button
                 size="lg"
                 asChild
-                className="text-base md:text-lg font-semibold min-w-64"
+                className="text-base md:text-lg font-semibold"
                 data-testid="button-call-now"
               >
                 <a href="tel:+40742575464" className="flex items-center justify-center gap-2">
                   <Phone className="w-5 h-5" />
-                  Sună Acum - 0742 575 464
+                  Sună Acum
                 </a>
               </Button>
             </div>
